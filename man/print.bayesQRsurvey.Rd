@@ -27,6 +27,7 @@ to display for each quantile. If \code{NULL}, all rows are printed (only used in
 \code{bqr.svy} or \code{mo.bqr.svy} to the console.
 }
 \examples{
+\donttest{
 set.seed(123)
 N    <- 10000
 x1_p <- runif(N, -1, 1)
@@ -35,7 +36,7 @@ y_p  <- 2 + 1.5 * x1_p - 0.8 * x2_p + rnorm(N)
 
 # Generate sample data
 n <- 500
-z_aux <- rnorm(N, mean = 1 + y_p, sd=.5)
+z_aux <- rnorm(N, mean = 1 + y_p, sd = .5)
 p_aux <- 1 / (1 + exp(2.5 - 0.5 * z_aux))
 s_ind <- sample(1:N, n, replace = FALSE, prob = p_aux)
 y_s   <- y_p[s_ind]
@@ -45,7 +46,9 @@ w     <- 1 / p_aux[s_ind]
 data  <- data.frame(y = y_s, x1 = x1_s, x2 = x2_s, w = w)
 
 # Fit a model
-fit1 <- bqr.svy(y ~ x1 + x2, weights = w, data = data, niter = 2000, burnin = 500, thin = 2)
+fit1 <- bqr.svy(y ~ x1 + x2, weights = w, data = data,
+                niter = 2000, burnin = 500, thin = 2)
 
 print(fit1)
+}
 }

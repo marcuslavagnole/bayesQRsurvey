@@ -60,7 +60,7 @@ An object of class \code{"bqr.svy"}, containing:
 \code{bqr.svy} implements Bayesian methods for estimating quantile regression models
 for complex survey data analysis regarding single (univariate) outputs. To
 improve computational efficiency, the Markov Chain Monte Carlo (MCMC) algorithms
-are implemented in C++.
+are implemented in 'C++'.
 }
 \details{
 The bqr.svy function can estimate three types of models, where the quantile regression
@@ -73,6 +73,7 @@ the survey weights.
 }
 }
 \examples{
+\donttest{
 # Generate population data
 set.seed(123)
 N    <- 10000
@@ -82,7 +83,7 @@ y_p  <- 2 + 1.5 * x1_p - 0.8 * x2_p + rnorm(N)
 
 # Generate sample data
 n <- 500
-z_aux <- rnorm(N, mean = 1 + y_p, sd=.5)
+z_aux <- rnorm(N, mean = 1 + y_p, sd = .5)
 p_aux <- 1 / (1 + exp(2.5 - 0.5 * z_aux))
 s_ind <- sample(1:N, n, replace = FALSE, prob = p_aux)
 y_s   <- y_p[s_ind]
@@ -95,18 +96,18 @@ data  <- data.frame(y = y_s, x1 = x1_s, x2 = x2_s, w = w)
 fit1 <- bqr.svy(y ~ x1 + x2, weights = w, data = data)
 
 # Specify informative priors
-prior<- prior(
- beta_x_mean = c(2, 1.5, -0.8),
- beta_x_cov = diag(c(0.25, 0.25, 0.25)),
- sigma_shape = 1,
- sigma_rate = 1
+prior <- prior(
+  beta_x_mean = c(2, 1.5, -0.8),
+  beta_x_cov  = diag(c(0.25, 0.25, 0.25)),
+  sigma_shape = 1,
+  sigma_rate  = 1
 )
 fit2 <- bqr.svy(y ~ x1 + x2, weights = w, data = data, prior = prior)
 
 # Specify different methods
 fit_score  <- bqr.svy(y ~ x1 + x2, weights = w, data = data, method = "score")
 fit_approx <- bqr.svy(y ~ x1 + x2, weights = w, data = data, method = "approximate")
-
+}
 
 }
 \references{

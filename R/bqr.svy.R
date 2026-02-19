@@ -52,7 +52,7 @@ if (!exists("%||%"))
 #' \code{bqr.svy} implements Bayesian methods for estimating quantile regression models
 #' for complex survey data analysis regarding single (univariate) outputs. To
 #' improve computational efficiency, the Markov Chain Monte Carlo (MCMC) algorithms
-#' are implemented in C++.
+#' are implemented in 'C++'.
 #'
 #' @param formula a symbolic description of the model to be fit.
 #' @param weights an optional numerical vector containing the survey weights. If \code{NULL}, equal weights are used.

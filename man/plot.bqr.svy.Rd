@@ -5,7 +5,7 @@
 \alias{plot}
 \alias{plot.bwqr_fit}
 \alias{plot.bwqr_fit_multi}
-\title{Plot Method for Bayesian Weighted Quantile Regression (Survey)}
+\title{Plot Method for Bayesian Weighted Quantile Regression}
 \usage{
 \method{plot}{bqr.svy}(
   x,
@@ -144,7 +144,7 @@ function returns \code{invisible(NULL)}.
 \donttest{
 data(mtcars)
 fit <- bqr.svy(mpg ~ wt + hp + cyl, data = mtcars,
-               quantile = c(0.25, 0.5, 0.75), method = "ald",
+               quantile = c(0.5, 0.75), method = "ald",
                niter = 20000, burnin = 10000, thin = 5)
 
 plot(fit, type = "fit", predictor = "wt", show_ci = TRUE)

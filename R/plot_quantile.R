@@ -1,4 +1,4 @@
-#' Plot Method for Bayesian Weighted Quantile Regression (Survey)
+#' Plot Method for Bayesian Weighted Quantile Regression
 #'
 #' @description
 #' Plot method for objects of class \code{bqr.svy} produced by \code{bqr.svy()}.
@@ -81,7 +81,7 @@
 #' \donttest{
 #' data(mtcars)
 #' fit <- bqr.svy(mpg ~ wt + hp + cyl, data = mtcars,
-#'                quantile = c(0.5), method = "ald",
+#'                quantile = c(0.5, 0.75), method = "ald",
 #'                niter = 20000, burnin = 10000, thin = 5)
 #'
 #' plot(fit, type = "fit", predictor = "wt", show_ci = TRUE)

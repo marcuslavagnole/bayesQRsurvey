@@ -52,8 +52,9 @@ Every nonspecified prior parameter will get the default value.
 }
 }
 \examples{
+\donttest{
 
-#Simulate data
+# Simulate data
 set.seed(123)
 n  <- 200
 x1 <- rnorm(n, 0, 1)
@@ -65,7 +66,6 @@ y2 <- 1 + 0.5*x1 - 0.2*x2 + rnorm(n, 0, 1)
 
 data <- data.frame(y1 = y1, y2 = y2, x1 = x1, x2 = x2, w = w)
 
-
 # Define a general informative prior
 prior_general <- prior(
   beta_x_mean = c(2, 1.5, -0.8),
@@ -76,9 +76,7 @@ prior_general <- prior(
   beta_y_cov  = 0.25
 )
 
-#Estimate the model parameters with informative prior
-
-
+# Estimate the model parameters with informative prior
 fit_ald <- bqr.svy(y1 ~ x1 + x2, weights = w, data = data,
                    prior = prior_general, method = "ald")
 
@@ -93,10 +91,10 @@ fit_mo <- mo.bqr.svy(cbind(y1, y2) ~ x1 + x2, weights = w,
                      data = data, prior = prior_general, n_dir = 10)
 
 plot(fit_ald, type = "trace", which = "x1", tau = 0.5)
-
 plot(fit_ald, type = "trace", which = "x2", tau = 0.5)
 
 print(fit_mo)
+}
 
 }
 \seealso{
